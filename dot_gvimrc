@@ -1,0 +1,162 @@
+":colorscheme torte
+:colorscheme solarized
+:set t_Co=256
+:set bg=light
+:set shiftwidth=4
+:set softtabstop=4
+:set expandtab smarttab
+:set incsearch
+:set hls
+:syntax enable
+filetype indent on
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+let NERDTreeIgnore=['__init__.py','.pyc$', '\~$', '\.o$']
+let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
+:let html_start_line = line("'<")
+:let html_end_line = line("'>")
+:filetype plugin on
+"set gfn=Droid\ Sans\ Mono\ 10
+"Ignore whitespace in vimdiff
+:set diffopt+=iwhite
+"To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
+:set showbreak=…
+:set ruler
+:set visualbell t_vb=
+:set dir=~/.vimswap//,/tmp//,.
+
+augroup session
+    autocmd!
+    autocmd VimEnter * call LoadSession()
+    autocmd VimLeave * call SaveSession()
+    function! SaveSession()
+      execute 'mksession! $HOME/.vim/sessions/session.vim'
+    endfunction
+    function! LoadSession()
+      if argc() == 0
+        execute 'source $HOME/.vim/sessions/session.vim'
+      endif
+    endfunction
+augroup END
+
+" Change current path to the open buffer
+autocmd BufEnter * silent! lcd %:p:h
+
+map h1 yypVr=o
+
+"command-t http://mislav.uniqpath.com/2011/12/vim-revisited/
+" use comma as <Leader> key instead of backslash
+let mapleader=","
+" double percentage sign in command mode is expanded
+" to directory of current file - http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+nnoremap <leader><leader> <c-^>
+
+"
+noremap <Space> :
+"noremap w :w<CR>
+
+nmap <C-e> :b#<CR>
+
+" Don't move on *
+nnoremap * *<c-o>
+
+" Window resizing
+nnoremap <c-left> 5<c-w><
+nnoremap <c-right> 5<c-w>>
+
+" Source
+vnoremap <leader>s y:execute @@<cr>:echo 'Sourced selection.'<cr>
+nnoremap <leader>s ^vg_y:execute @@<cr>:echo 'Sourced line.'<cr>
+
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
+
+" Easier to type
+noremap H ^
+noremap L $
+vnoremap L g_
+
+" "Uppercase word" mapping.
+"
+" This mapping allows you to press <c-u> in insert mode to convert the current
+" word to uppercase.  It's handy when you're writing names of constants and
+" don't want to use Capslock.
+"
+" To use it you type the name of the constant in lowercase.  While your
+" cursor is at the end of the word, press <c-u> to uppercase it, and then
+" continue happily on your way:
+"
+"                            cursor
+"                            v
+"     max_connections_allowed|
+"     <c-u>
+"     MAX_CONNECTIONS_ALLOWED|
+"                            ^
+"                            cursor
+"
+" It works by exiting out of insert mode, recording the current cursor location
+" in the z mark, using gUiw to uppercase inside the current word, moving back to
+" the z mark, and entering insert mode again.
+"
+" Note that this will overwrite the contents of the z mark.  I never use it, but
+" if you do you'll probably want to use another mark.
+inoremap <C-u> <esc>mzgUiw`za
+
+set spelllang=en,de,hu
+"Turn off toolbar
+set guioptions-=T
+
+" ==== Plugins ====
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+" surround: b surrounds text with {% %} for djangohtml
+autocmd FileType htmldjango let b:surround_{char2nr("b")} = "{% \r %}"
+call pathogen#infect()
+" vim-commentary
+autocmd FileType erlang set commentstring=\%\ %s
+
+" ==== From Csaba ====
+
+noremap Q <nop>
+
+" --------- "
+" Underline "
+" --------- "
+
+" Underline:
+"   Underlines the current line with the given character.
+" Example:
+"   Type this line:
+"       something
+"   Type the following command while the cursor is on that line:
+"       :call Underline('-')
+"   Now the line has been underlined with '-':
+"       something
+"       ---------
+function! Underline(ch)
+   let len = strlen(substitute(getline("."), ".", "x", "g"))
+   normal o
+   call setline(".",repeat(a:ch, len))
+endfunction
+
+" ,<char><char> underlines the current line with <char>.
+" <char> may be any of the followings: - = ^ " ' :
+noremap ,-- :call Underline('-')<cr>
+noremap ,== :call Underline('=')<cr>
+noremap ,^^ :call Underline('^')<cr>
+noremap ,"" :call Underline('"')<cr>
+noremap ,'' :call Underline("'")<cr>
+noremap ,:: :call Underline(":")<cr>
+
+" ----------------------------- "
+" Copying stuff to the keyboard "
+" ----------------------------- "
+
+command! FileNameToClipboard let @+=expand('%:p') | let @*=@+
+command! PathToClipboard let @+=expand('%:p:h') | let @*=@+
+command! PureFileNameToClipboard let @+=expand('%:t') | let @*=@+
+command! ModuleNameToClipboard let @+=expand('%:t:r') | let @*=@+
+
+" end Csaba
