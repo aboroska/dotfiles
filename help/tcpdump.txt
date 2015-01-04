@@ -1,0 +1,4 @@
+Run tcpdump forever
+===================
+/usr/sbin/tcpdump -i eth0 -z gzip -W 2000 -C 10 -n -nn -p -s 0 -Z middleware -w filename.pkt (host example.com or port 10070 or port 10080 or port 80 or port 443)
+

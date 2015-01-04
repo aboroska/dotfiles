@@ -1,0 +1,31 @@
+Install
+=======
+http://vimeo.com/85668319   from:hukl
+
+cd /usr/ports/ports-mgmt/portmaster
+make install
+echo 'WITH_PKGNG=yes' >> /etc/make.conf
+pkg2ng
+portmaster #updates packages
+portsnap fetch
+portsnap update
+whereis bash
+portmaster shells/bash
+pkg info
+pkg version
+
+bash requires fdescfs(5) mounted on /dev/fd
+If you have not done it yet, please do the following:
+        mount -t fdescfs fdesc /dev/fd
+To make it permanent, you need the following lines in /etc/fstab:
+        fdesc   /dev/fd         fdescfs         rw      0       0
+
+pkg install security/sudo devel/git editors/vim sysutils/tmux # or vim-lite?
+pkg upgrade -f # to upgrade existing packages
+
+Dotfiles
+--------
+
+Vim
+---
+vimbackup

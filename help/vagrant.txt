@@ -1,0 +1,36 @@
+
+Install an image: 
+------------------
+vagrant box add precise64 http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
+mkdir -p ~/vagrant/precise64-1
+cd ~/vagrant/precise64-1
+vagrant init precise64
+vagrant plugin install vagrant-vbguest
+vagrant up
+
+Ubuntu update:
+--------------
+sudo apt-get update
+
+Install Dropbox (http://buildcontext.com/blog/2012/dropbox-linux-ubuntu-ec2-linode-selective-sync):
+---------------------------------------------------------------------------------------------------
+cd ~ && wget -O - "http://www.dropbox.com/download\
+?plat=lnx.x86_64" | tar xzf -
+curl -O https://linux.dropbox.com/packages/dropbox.py
+chmod u+x dropbox.py
+curl  https://raw.github.com/gist/2347727/108fc8af551cb4fdf7cdd08b891a45f405d283dc/dropbox > dropbox_temp
+./.dropbox-dist/dropboxd
+#authenticate in a browser ...
+#ctrl-c
+sed -i 's/user1 user2/vagrant/' dropbox_temp
+sudo mv dropbox_temp /etc/init.d/dropbox
+sudo chmod +x /etc/init.d/dropbox
+sudo update-rc.d dropbox defaults
+sudo service dropbox start
+cd Dropbox
+~/dropbox.py exclude add *
+
+Erlang install
+--------------
+sudo apt-get install libncurses5-dev
+

@@ -1,0 +1,46 @@
+Build and install Erlang
+========================
+
+Using kerl
+----------
+
+The kerl script makes it easier to build and install several Erlang installations on one machine. It can be downloaded from:[...]
+The README describes its usage.
+
+WxWidgets issues
+----------------
+OTP R15 series is compatible with Wx 2.8.x.
+OTP R16 requires at least Wx 2.9.x which is a development version.
+However, when OTP R16B came out the latest stable Wx was 2.8.x, and it was decided not to bundle an unstable Wx library with the binary ESL R16 packages.  
+
+Build Erlang with Wx 2.9.x on OS X 10.6-10.8
+--------------------------------------------
+
+Download WxWidgests from [...], compile and install it.
+
+<pre>
+./configure --with-cocoa --prefix=/usr/local && make && sudo make install
+</pre>
+
+Now, you can build a 64 bit version of the release candidate OTP R16A using the following .kerlrc for example:
+
+<pre>
+KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit"
+KERL_DEFAULT_INSTALL_DIR=~/otpinst
+KERL_ENABLE_PROMPT=true
+</pre>
+
+Unfortunately, R16B OTP does not compile with Wx 2.9.4.
+
+
+Install cachegrind
+==================
+
+sudo chmod -R g+w /usr/local
+brew link libpng
+brew install qcachegrind
+brew install graphviz
+cd ~/bin
+curl -O "https://raw.github.com/isacssouza/erlgrind/master/src/erlgrind" && chmod u+x erlgrind
+mkdir /Users/aboroska/Applications
+brew linkapps
