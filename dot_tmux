@@ -11,6 +11,9 @@ set -g pane-base-index 1
 set -g status-fg White
 set -g status-bg Blue
 
+#Remove the small delay tmux adds. Should help vim
+set -s escape-time 1
+
 # Alt-<N> to select pane in tmux
 bind -n M-1 select-pane -t 1
 bind -n M-2 select-pane -t 2
@@ -25,5 +28,5 @@ bind -n M-0 select-pane -t 10
 
 bind q confirm-before -p "Are you sure to quit (y/n)?" kill-server
 
-bind -n M-s setw synchronize-panes
+bind -n M-S setw synchronize-panes
 bind -n M-d setw synchronize-panes off
