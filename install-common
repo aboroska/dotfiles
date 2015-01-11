@@ -1,0 +1,9 @@
+# Make the simlinks for any OS
+# Source it from the directory of the git repository 
+
+D=`pwd`
+ln -s $D/help ~/help
+ln -s $D/bash_prompt ~/bash_prompt
+ln -s $D/dot_erlang ~/.erlang
+ln -s $D/dot_erlang.d ~/.erlang.d
+
