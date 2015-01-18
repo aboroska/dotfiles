@@ -9,4 +9,7 @@ ln -s $D/dot_erlang.d ~/.erlang.d
 ln -s $D/dot_tmux ~/.tmux.conf
 ln -s $D/dot_bash_profile-common ~/.bash_profile
 ln -s ~/.bash_profile ~/.bashrc
-cat $D/dot_bash_profile-bsd >> ~/.bash_profile 
+#Vim
+ln -s $D/dot_gvimrc ~/.gvimrc
+ln -s ~/.gvimrc ~/.vimrc
+
