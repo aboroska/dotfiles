@@ -2,25 +2,76 @@ Install
 =======
 http://vimeo.com/85668319   from:hukl
 
+VirtualBox
+----------
+https://www.freebsd.org/doc/handbook/virtualization-guest.html
+
+Network adapter 1: NAT, paravirt
+Network adapter 2: Host only 192.168.56.1
+
+BSD installer
+-------------
+eth0 dhcp
+eth1 192.168.56.56 gw 192.168.56.0
+
+# From https://www.freebsd.org/doc/handbook/virtualization-guest.html
+echo "kern.hz=100" >> /boot/loader.conf
+----------------------------------------------------------------
+root@bsd1:~ # cat /etc/rc.conf
+hostname="bsd1"
+ifconfig_vtnet0="DHCP"
+ifconfig_vtnet1="inet 192.168.56.56 netmask 255.255.255.0"
+defaultrouter="192.168.56.0"
+sshd_enable="YES"
+# Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+dumpdev="AUTO"
+----------------------------------------------------------------
+portsnap fetch
+portsnap update
 cd /usr/ports/ports-mgmt/portmaster
-make install
+make install clean
 echo 'WITH_PKGNG=yes' >> /etc/make.conf
 pkg2ng
 portmaster #updates packages
-portsnap fetch
-portsnap update
-whereis bash
-portmaster shells/bash
 pkg info
 pkg version
 
+pkg install security/sudo devel/git editors/vim sysutils/tmux # or vim-lite?
+
+Bash
+----
+whereis bash
+pkg install shells/bash
 bash requires fdescfs(5) mounted on /dev/fd
 If you have not done it yet, please do the following:
         mount -t fdescfs fdesc /dev/fd
 To make it permanent, you need the following lines in /etc/fstab:
         fdesc   /dev/fd         fdescfs         rw      0       0
 
-pkg install security/sudo devel/git editors/vim sysutils/tmux # or vim-lite?
+$which bash
+/usr/local/bin/bash
+
+chsh -s bash bandris
+chsh -s bash
+finger bandris
+
+Virtualbox guest additions https://wiki.freebsd.org/VirtualBox
+--------------------------------------------------------------
+cd /usr/ports/emulators/virtualbox-ose-additions && make install clean # don't install X window
+Add to /etc/rc.conf
+vboxguest_enable="YES"
+vboxservice_enable="YES"
+
+reboot
+
+Sudo
+----
+#visudo or edit /usr/local/etc/sudoers
+bandris ALL=(ALL) ALL
+
+
+Misc
+----
 pkg upgrade -f # to upgrade existing packages
 
 Dotfiles
