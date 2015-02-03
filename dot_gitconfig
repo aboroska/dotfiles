@@ -1,0 +1,21 @@
+[user]
+        email = andras.boroska@gmail.com
+        name = Andras Boroska
+[core]
+        whitespace = tab-in-indent
+[color]
+        ui = true
+[status]
+        showUntrackedFiles = no
+[alias]
+        s = status
+        stu = status --untracked-files=normal
+        graph = log --graph --all --oneline --decorate
+        co = checkout
+        wdiff = diff --word-diff=color --word-diff-regex='[[:alnum:]|_]+|[^[:space:]|$]'
+        wlog = log -p --word-diff=color --word-diff-regex='[[:alnum:]|_]+|[^[:space:]|$]'
+	    stash-unapply = !git stash show -p | git apply -R
+        lp = log -p --word-diff=color --word-diff-regex='[[:alnum:]]+|[^[:space:]|_|$]' model
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+        lgs = log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short
+
