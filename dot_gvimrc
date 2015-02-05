@@ -1,7 +1,13 @@
+"---- Colours ----
+:set t_Co=256
+:let g:solarized_termcolors=256
 ":colorscheme torte
 :colorscheme solarized
-:set t_Co=256
-:set bg=light
+":colorscheme desert
+:set bg=dark
+"Disable Background Color Erase
+:set t_ut=
+"---- End Colours ----
 :set shiftwidth=4
 :set softtabstop=4
 :set expandtab smarttab
