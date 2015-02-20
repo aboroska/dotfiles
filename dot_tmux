@@ -1,6 +1,8 @@
 # make Ctrl-A default prefix in tmux
 unbind C-b
 set -g prefix C-a
+# C-a a jumps to begining of the line
+bind-key a send-prefix
 
 set -g default-terminal "screen-256color"
 
