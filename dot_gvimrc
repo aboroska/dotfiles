@@ -21,6 +21,7 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 "To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 :set showbreak=…
 :set ruler
+:set wildmenu
 :set visualbell t_vb=
 :set dir=~/.vimswap//,/tmp//,.
 :set nrformats=hex
