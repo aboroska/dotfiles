@@ -19,7 +19,8 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 "Ignore whitespace in vimdiff
 :set diffopt+=iwhite
 "To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
-:set showbreak=…
+":set showbreak=…
+:set showbreak=...
 :set ruler
 :set wildmenu
 :set visualbell t_vb=
@@ -112,7 +113,7 @@ set spelllang=en,de,hu
 set guioptions-=T
 
 " ==== Plugins ====
-set runtimepath^=~/.vim/bundle/vim-erlang/
+set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " surround: b surrounds text with {% %} for djangohtml
 autocmd FileType htmldjango let b:surround_{char2nr("b")} = "{% \r %}"
