@@ -34,6 +34,11 @@ bind q confirm-before -p "Are you sure to quit (y/n)?" kill-server
 bind -n M-S setw synchronize-panes
 bind -n M-d setw synchronize-panes off
 
+# Start panes and windows in current dir
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
 #256 colors
 set -g default-terminal screen-256color
 
