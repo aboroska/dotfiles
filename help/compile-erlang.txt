@@ -44,3 +44,8 @@ cd ~/bin
 curl -O "https://raw.github.com/isacssouza/erlgrind/master/src/erlgrind" && chmod u+x erlgrind
 mkdir /Users/aboroska/Applications
 brew linkapps
+
+
+Check compilation flags
+=======================
+proplists:get_value(cflags,erlang:system_info(compile_info)).
