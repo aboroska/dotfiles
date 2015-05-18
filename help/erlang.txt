@@ -1,0 +1,15 @@
+
+Skerleton
+---------
+http://roberto-aloi.com/erlang/skerleton-bootstrap-erlang-projects-in-seconds/
+
+git clone https://github.com/robertoaloi/skerleton.git my_app
+cd my_app
+./bootstrap.sh
+
+rm -rf bootstrap.sh README.md .git rel/reltool.config.template
+git init
+git add . && git commit -a -m "Initial commit."
+
+make rel
+rel/my_app/bin/my_app console
