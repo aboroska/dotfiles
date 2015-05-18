@@ -1,7 +1,7 @@
 
 Skerleton
 ---------
-http://roberto-aloi.com/erlang/skerleton-bootstrap-erlang-projects-in-seconds/
+http://roberto-aloi.com/skerleton/
 
 git clone https://github.com/robertoaloi/skerleton.git my_app
 cd my_app
