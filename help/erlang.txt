@@ -1,4 +1,11 @@
 
+rebar3
+------
+
+curl https://s3.amazonaws.com/rebar3/rebar3 -o ~/bin/rebar3
+chmod u+x ~/bin/rebar3
+rebar3 new release my_release
+
 Skerleton
 ---------
 http://roberto-aloi.com/skerleton/
