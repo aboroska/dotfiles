@@ -1,3 +1,10 @@
+Compile
+-------
+See compile-erlang.txt
+
+Check compilation flags
+=======================
+proplists:get_value(cflags,erlang:system_info(compile_info)).
 
 rebar3
 ------
