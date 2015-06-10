@@ -5,3 +5,7 @@ RABBITMQ_ALLOW_INPUT=true  NODENAME="rabbit@localhost" sbin/rabbitmq-server
 Start 2nd instance
 ==================
 RABBITMQ_NODE_PORT=5673 RABBITMQ_SERVER_START_ARGS="-rabbitmq_management listener [{port,15673}]" RABBITMQ_NODENAME=hare sbin/rabbitmq-server
+
+Mirroring
+=========
+sbin/rabbitmqctl set_policy ha-all "^mirr\." '{"ha-mode":"all"}'
