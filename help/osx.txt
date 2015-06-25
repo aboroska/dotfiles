@@ -1,0 +1,16 @@
+Disable swap
+------------
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+reboot!
+
+sysctl vm.swapusage
+
+Remove files by hand
+--------------------
+sudo rm /private/var/vm/swapfile*
+
+
+Enable swap
+-----------
+To enable swap, you need to boot in Single Mode (Hold [CMD + S] at booting time) and run this:
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
