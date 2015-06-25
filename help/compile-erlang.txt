@@ -7,6 +7,8 @@ Using kerl
 The kerl script makes it easier to build and install several Erlang installations on one machine. It can be downloaded from:[...]
 The README describes its usage.
 
+kerl build git <git_url> <git_version> <build_name>
+
 WxWidgets issues
 ----------------
 OTP R15 series is compatible with Wx 2.8.x.
