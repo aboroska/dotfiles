@@ -1,0 +1,6 @@
+Create a here document (works with sudo)
+----------------------------------------
+tee myfile <<EOF
+...
+EOF
+
