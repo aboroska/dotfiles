@@ -51,3 +51,8 @@ brew linkapps
 Check compilation flags
 =======================
 proplists:get_value(cflags,erlang:system_info(compile_info)).
+
+R18 now() compile workaround
+============================
+export ERL_COMPILER_OPTIONS=nowarn_deprecated_function
+
