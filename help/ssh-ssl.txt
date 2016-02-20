@@ -1,0 +1,4 @@
+
+SSL
+---
+openssl s_client -connect domain.name:443

@@ -1,6 +1,10 @@
 Build and install Erlang
 ========================
 
+OSX prerequisites
+-----------------
+brew install autoconf automake wxmac openssl
+
 Using kerl
 ----------
 
@@ -8,6 +12,9 @@ The kerl script makes it easier to build and install several Erlang installation
 The README describes its usage.
 
 kerl build git <git_url> <git_version> <build_name>
+
+To disable applications:
+KERL_CONFIGURE_DISABLE_APPLICATIONS="odbc" kerl build R16B02 r16b02_no_odbc
 
 WxWidgets issues
 ----------------

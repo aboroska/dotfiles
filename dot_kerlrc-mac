@@ -1,3 +1,6 @@
-KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-wx"
+KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/opt/openssl --disable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-wx"
 KERL_DEFAULT_INSTALL_DIR=~/otpinst
 KERL_ENABLE_PROMPT=true
+KERL_INSTALL_MANPAGES=yes
+KERL_INSTALL_HTMLDOCS=yes
+
