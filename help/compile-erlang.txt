@@ -17,7 +17,7 @@ To disable applications:
 KERL_CONFIGURE_DISABLE_APPLICATIONS="odbc" kerl build R16B02 r16b02_no_odbc
 
 WxWidgets issues
-----------------
+================
 OTP R15 series is compatible with Wx 2.8.x.
 OTP R16 requires at least Wx 2.9.x which is a development version.
 However, when OTP R16B came out the latest stable Wx was 2.8.x, and it was decided not to bundle an unstable Wx library with the binary ESL R16 packages.  
@@ -40,6 +40,11 @@ KERL_ENABLE_PROMPT=true
 </pre>
 
 Unfortunately, R16B OTP does not compile with Wx 2.9.4.
+
+R19 and WxWidges 3.0
+--------------------
+wxWidgets-3.0.2 should work out of the box.
+If you use wxWidgets-3.1 you need to compile wxWidgets with --enable-compat28
 
 
 Install cachegrind
