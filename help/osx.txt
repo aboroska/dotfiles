@@ -1,3 +1,12 @@
+Limits
+------
+Create plist files that are owned by root:wheel (see macos-limits dir)
+Load them by:
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxproc.plist
+reboot!
+ulimit -a
+
 Disable swap
 ------------
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
