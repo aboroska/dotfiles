@@ -1,8 +1,9 @@
 [user]
-        email = andras.boroska@gmail.com
-        name = Andras Boroska
+	email = andras.boroska@gmail.com
+	name = Andras Boroska
 [core]
         whitespace = tab-in-indent
+	editor = /usr/bin/vim
 [color]
         ui = true
 [status]
