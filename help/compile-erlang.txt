@@ -1,6 +1,11 @@
 Build and install Erlang
 ========================
 
+Debug compile vm
+----------------
+(cd $ERL_TOP/erts/emulator && make TYPE=debug smp)
+$ERL_TOP/bin/cerl -debug
+
 OSX prerequisites
 -----------------
 brew install autoconf automake wxmac openssl
