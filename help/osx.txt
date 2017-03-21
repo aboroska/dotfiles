@@ -1,3 +1,7 @@
+List listening processes on ports
+---------------------------------
+sudo lsof -iTCP -sTCP:LISTEN -n -P
+
 Limits
 ------
 Create plist files that are owned by root:wheel (see macos-limits dir)
