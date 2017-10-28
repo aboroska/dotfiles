@@ -1,0 +1,34 @@
+
+V scp ~/bash_prompt :~
+V scp ~/.vim :~
+V scp ~/aliases :~
+
+
+---- On the VM ----
+sudo apt-get install ctags
+sudo apt-get install python-minimal
+
+mkdir -p ~/otpinst
+mkdir -p ~/github && cd ~/github/ && git clone https://github.com/aboroska/dotfiles.git
+mkdir -p ~/bin && cd ~/bin && curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
+cd
+chmod u+x ~/bin/kerl
+ln -s ~/github/dotfiles/dot_kerlrc_linux ~/.kerlrc
+sudo apt-get install libncurses5-dev
+sudo apt-get install build-essential
+sudo apt-get install autoconf
+sudo apt-get install libssl-dev
+# TODO Java, odbc
+cd ~/github/
+git clone https://github.com/erlang/otp
+kerl build git ~/github/otp/ OTP-19.2.1 r19.2.1
+kerl install r19.2.1
+\curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+
+curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+. ~/.git-prompt.sh # Seems like it is enough
+ln -s ~/github/dotfiles/dot_gitconfig ~/.gitconfig
+
+echo ". ~/aliases" >> ~/.bashrc
+ln -s ~/github/dotfiles/dot_tmux ~/.tmux.conf
+
