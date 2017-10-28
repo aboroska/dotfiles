@@ -2,6 +2,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set ttymouse=sgr
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -33,12 +34,12 @@ filetype plugin indent on
 ":colorscheme torte
 :colorscheme solarized
 ":colorscheme desert
-:set bg=dark
+:set bg=light
 "Disable Background Color Erase
 :set t_ut=
 "---- End Colours ----
-:set shiftwidth=4
-:set softtabstop=4
+:set shiftwidth=2
+:set softtabstop=2
 :set expandtab smarttab
 :set incsearch
 :set hls
@@ -52,7 +53,6 @@ let NERDTreeIgnore=['__init__.py','.pyc$', '\~$', '\.o$']
 let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 :let html_start_line = line("'<")
 :let html_end_line = line("'>")
-"set gfn=Droid\ Sans\ Mono\ 10
 "Ignore whitespace in vimdiff
 :set diffopt+=iwhite
 "To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
@@ -63,6 +63,14 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 :set visualbell t_vb=
 :set dir=~/.vimswap//,/tmp//,.
 :set nrformats=hex
+"Add include dir for Erlang header files, used by gf
+:set path+=../include
+let g:erlang_quickfix_support = 1
+"let g:erlang_make_options = '--outdir /Users/aboroska/tmp --xref'
+let g:erlang_flymake_options = '--outdir /Users/aboroska/tmp --xref'
+"Man pages
+:runtime! ftplugin/man.vim
+:set mouse=a
 
 " ==== Plugins ====
 :imap <Tab> <C-P>
@@ -76,6 +84,7 @@ let g:ctrlp_custom_ignore = {
       \  'dir': '\v(_build|node_modules)$',
        \ 'file': '\v\.beam$'
        \ }
+let g:ctrlp_root_markers = ['.CTRLP_ROOT']
 " surround: b surrounds text with {% %} for djangohtml
 autocmd FileType htmldjango let b:surround_{char2nr("b")} = "{% \r %}"
 "call pathogen#infect() TODO remove
@@ -85,8 +94,9 @@ autocmd FileType elixir setlocal commentstring=\#\ %s
 
 " ==== CTAGS ====
 au FileType elixir set tags+=~/src/elixir/rumbl/tags,~/github/phoenix/tags,~/github/elixir/tags
-set tags+=~/github/aboroska/wombat/tags
-set tags+=~/otpinst/r15B03/tags
+"set tags+=~/github/aboroska/wombat/tags
+set tags+=~/w/tags
+set tags+=~/otpinst/r19.3.6.2/tags
 
 "augroup session
 "    autocmd!
