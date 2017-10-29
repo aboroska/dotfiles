@@ -3,6 +3,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set ttymouse=sgr
+" For fzf
+set rtp+=/usr/local/opt/fzf
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -18,14 +20,16 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'ElmCast/elm-vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'junegunn/fzf.vim'
 " Used by snipmate
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
 Plugin 'carlosgaldino/elixir-snippets'
 " end snipmate
-
 call vundle#end()
+
 filetype plugin indent on
 
 " ==== Colours ====
@@ -73,6 +77,20 @@ let g:erlang_flymake_options = '--outdir /Users/aboroska/tmp --xref'
 :set mouse=a
 
 " ==== Plugins ====
+"command-t http://mislav.uniqpath.com/2011/12/vim-revisited/
+" use comma as <Leader> key instead of backslash
+let mapleader=","
+" double percentage sign in command mode is expanded
+" to directory of current file - http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+nnoremap <leader><leader> <c-^>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+nnoremap <Leader>a :Ack!<Space>
 :imap <Tab> <C-P>
 :imap <S-Tab> <Plug>snipMateNextOrTrigger
 "set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
@@ -125,16 +143,6 @@ nmap <CR> :set isk+=:<cr><c-]><c-o>:se isk-=:<cr><c-i>
 :map <C-Up> <C-W><Up><C-W>_
 
 map h1 yypVr=o
-
-"command-t http://mislav.uniqpath.com/2011/12/vim-revisited/
-" use comma as <Leader> key instead of backslash
-let mapleader=","
-" double percentage sign in command mode is expanded
-" to directory of current file - http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
-nnoremap <leader><leader> <c-^>
 
 "
 noremap <Space> :
