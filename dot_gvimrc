@@ -91,6 +91,8 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 nnoremap <Leader>a :Ack!<Space>
+nmap ; :Files<CR>
+
 :imap <Tab> <C-P>
 :imap <S-Tab> <Plug>snipMateNextOrTrigger
 "set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
