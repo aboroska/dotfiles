@@ -1,27 +1,58 @@
-"---- Colours ----
+" ==== Vundle ====
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set ttymouse=sgr
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-obsession'
+Plugin 'vim-erlang/vim-erlang-tags'
+Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-skeletons'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'ElmCast/elm-vim'
+" Used by snipmate
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+Plugin 'carlosgaldino/elixir-snippets'
+" end snipmate
+
+call vundle#end()
+filetype plugin indent on
+
+" ==== Colours ====
 :set t_Co=256
 :let g:solarized_termcolors=256
 ":colorscheme torte
 :colorscheme solarized
 ":colorscheme desert
-:set bg=dark
+:set bg=light
 "Disable Background Color Erase
 :set t_ut=
 "---- End Colours ----
-:set shiftwidth=4
-:set softtabstop=4
+:set shiftwidth=2
+:set softtabstop=2
 :set expandtab smarttab
 :set incsearch
 :set hls
+"Always show the status bar
+:set laststatus=2
+
 :syntax enable
-filetype indent on
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+au BufRead,BufNewFile *.es set filetype=erlang
 let NERDTreeIgnore=['__init__.py','.pyc$', '\~$', '\.o$']
 let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 :let html_start_line = line("'<")
 :let html_end_line = line("'>")
-:filetype plugin on
-"set gfn=Droid\ Sans\ Mono\ 10
 "Ignore whitespace in vimdiff
 :set diffopt+=iwhite
 "To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
@@ -32,6 +63,40 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 :set visualbell t_vb=
 :set dir=~/.vimswap//,/tmp//,.
 :set nrformats=hex
+"Add include dir for Erlang header files, used by gf
+:set path+=../include
+let g:erlang_quickfix_support = 1
+"let g:erlang_make_options = '--outdir /Users/aboroska/tmp --xref'
+let g:erlang_flymake_options = '--outdir /Users/aboroska/tmp --xref'
+"Man pages
+:runtime! ftplugin/man.vim
+:set mouse=a
+
+" ==== Plugins ====
+:imap <Tab> <C-P>
+:imap <S-Tab> <Plug>snipMateNextOrTrigger
+"set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
+"set runtimepath+=~/github/vim-addon-manager
+"call vam#ActivateAddons(["vim-addon-mw-utils"])
+
+let g:ctrlp_custom_ignore = {
+      \  'dir': '\v(_build|node_modules)$',
+       \ 'file': '\v\.beam$'
+       \ }
+let g:ctrlp_root_markers = ['.CTRLP_ROOT']
+" surround: b surrounds text with {% %} for djangohtml
+autocmd FileType htmldjango let b:surround_{char2nr("b")} = "{% \r %}"
+"call pathogen#infect() TODO remove
+" vim-commentary
+autocmd FileType erlang setlocal commentstring=\%\ %s
+autocmd FileType elixir setlocal commentstring=\#\ %s
+
+" ==== CTAGS ====
+au FileType elixir set tags+=~/src/elixir/rumbl/tags,~/github/phoenix/tags,~/github/elixir/tags
+"set tags+=~/github/aboroska/wombat/tags
+set tags+=~/w/tags
+set tags+=~/otpinst/r19.3.6.2/tags
 
 "augroup session
 "    autocmd!
@@ -49,6 +114,15 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 
 " Change current path to the open buffer
 autocmd BufEnter * silent! lcd %:p:h
+
+" jump to tag when enter pressed
+"nmap <CR> <C-]>
+let g:alchemist_tag_map = '<CR>'
+nmap <CR> :set isk+=:<cr><c-]><c-o>:se isk-=:<cr><c-i>
+
+" switch between horizontal splits
+:map <C-Down> <C-W><Down><C-W>_
+:map <C-Up> <C-W><Up><C-W>_
 
 map h1 yypVr=o
 
@@ -117,16 +191,6 @@ inoremap <C-u> <esc>mzgUiw`za
 set spelllang=en,de,hu
 "Turn off toolbar
 set guioptions-=T
-
-" ==== Plugins ====
-set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_custom_ignore = 'beam'
-" surround: b surrounds text with {% %} for djangohtml
-autocmd FileType htmldjango let b:surround_{char2nr("b")} = "{% \r %}"
-call pathogen#infect()
-" vim-commentary
-autocmd FileType erlang set commentstring=\%\ %s
 
 "OS X needs this
 set backspace=2

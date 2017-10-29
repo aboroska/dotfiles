@@ -17,6 +17,9 @@ set -s escape-time 1
 #Increase scroll back (default is 2000)
 set-option -g history-limit 10000
 
+#Use vi bindings to search in scroll mode
+set-window-option -g mode-keys vi
+
 # Alt-<N> to select pane in tmux
 bind -n M-1 select-pane -t 1
 bind -n M-2 select-pane -t 2

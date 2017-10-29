@@ -1,3 +1,16 @@
+List listening processes on ports
+---------------------------------
+sudo lsof -iTCP -sTCP:LISTEN -n -P
+
+Limits
+------
+Create plist files that are owned by root:wheel (see macos-limits dir)
+Load them by:
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxproc.plist
+reboot!
+ulimit -a
+
 Disable swap
 ------------
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
@@ -18,3 +31,28 @@ sudo launchctl load /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
 Samsung ML-2010PR printer
 -------------------------
 Use the ML-2040 driver from Samsung.
+
+PostgreSQL
+----------
+brew services start postgresql
+createuser -s postgres
+
+[https://gist.github.com/kevinelliott/e12aa642a8388baf2499]
+brew install postgres --no-ossp-uuid
+
+# Initialize db if none exists already
+initdb /usr/local/var/postgres
+
+# Create launchctl script
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/postgresql/VERSION/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
+
+# Edit launchctl script (set to not start automatically and keepalive false)
+subl ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+# Inject launchctl script
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+# Start PostgreSQL
+start pg
+

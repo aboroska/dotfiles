@@ -36,13 +36,3 @@ noremap <leader>m :call ToggleFold()<CR>
 
 " folds are open by default, toggle: zi
 set nofoldenable
-
-" jump to tag when enter pressed
-"nmap <CR> <C-]>
-nmap <CR> :set isk+=:<cr><c-]><c-o>:se isk-=:<cr><c-i>
-
-
-
-" switch between horizontal splits
-:map <C-Down> <C-W><Down><C-W>_
-:map <C-Up> <C-W><Up><C-W>_

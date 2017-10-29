@@ -80,3 +80,12 @@ Dotfiles
 Vim
 ---
 vimbackup
+
+Release upgrade
+===============
+freebsd-update fetch
+freebsd-update install
+cd /usr/ports && make update && portmaster -a
+#check ports for any unpatched security issues (should be 0)
+ pkg audit -F
+freebsd-update -r 10.2-RELEASE upgrade

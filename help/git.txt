@@ -1,0 +1,4 @@
+Change remote url
+=================
+git remote set-url origin git@....:repo/project.git
+
