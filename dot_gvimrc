@@ -90,6 +90,7 @@ nnoremap <leader><leader> <c-^>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <Leader>a :Ack!<Space>
 nmap ; :Files<CR>
 
