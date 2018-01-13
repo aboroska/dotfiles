@@ -11,6 +11,10 @@ sudo launchctl load -w /Library/LaunchDaemons/limit.maxproc.plist
 reboot!
 ulimit -a
 
+Core file
+---------
+ulimit -c unlimited
+
 Disable swap
 ------------
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
