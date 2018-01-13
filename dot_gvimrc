@@ -136,6 +136,9 @@ set tags+=~/otpinst/r19.3.6.2/tags
 " Change current path to the open buffer
 autocmd BufEnter * silent! lcd %:p:h
 
+" Open pane in new tab
+:map <Leader>t :tab split<CR>
+
 " jump to tag when enter pressed
 "nmap <CR> <C-]>
 let g:alchemist_tag_map = '<CR>'

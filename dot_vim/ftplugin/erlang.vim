@@ -10,9 +10,9 @@ map <F4> <ESC>yawoct:pal("~p ~p <ESC>pa: ~p~n", [?MODULE, ?LINE, <ESC>pa]),<ESC>
 setlocal ts=8
 setlocal sw=2
 "setlocal hlsearch
-setlocal comments=:%%\ 
+setlocal comments=:%%%,:%%,:%
 setlocal cinkeys=0%,!^F,o,O
-setlocal formatoptions=croqlt
+setlocal formatoptions=ctroqlj
 "setlocal formatoptions+=cranlq
 "setlocal formatoptions-=t
 setlocal tw=84
