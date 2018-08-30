@@ -50,6 +50,9 @@ filetype plugin indent on
 "Always show the status bar
 :set laststatus=2
 
+"Do not change the end of file that shows up in git diff
+set nofixendofline
+
 :syntax enable
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 au BufRead,BufNewFile *.es set filetype=erlang
@@ -117,7 +120,8 @@ autocmd FileType elixir setlocal commentstring=\#\ %s
 au FileType elixir set tags+=~/src/elixir/rumbl/tags,~/github/phoenix/tags,~/github/elixir/tags
 "set tags+=~/github/aboroska/wombat/tags
 set tags+=~/w/tags
-set tags+=~/otpinst/r19.3.6.2/tags
+set tags+=~/otpinst/r20.2.2/tags
+set tags+=~/github/tags
 
 "augroup session
 "    autocmd!
