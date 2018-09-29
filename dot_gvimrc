@@ -119,6 +119,8 @@ autocmd FileType elixir setlocal commentstring=\#\ %s
 " ==== CTAGS ====
 au FileType elixir set tags+=~/src/elixir/rumbl/tags,~/github/phoenix/tags,~/github/elixir/tags
 "set tags+=~/github/aboroska/wombat/tags
+"Do not find rebar3 in ~/w
+set tags+=~/github/rebar3/tags
 set tags+=~/w/tags
 set tags+=~/otpinst/r20.2.2/tags
 set tags+=~/github/tags

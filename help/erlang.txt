@@ -6,12 +6,21 @@ Check compilation flags
 =======================
 proplists:get_value(cflags,erlang:system_info(compile_info)).
 
+SSL
+---
+Fred settings: https://gist.github.com/ferd/af9abf6b3600d2d7f08dba58fdfb514a
+Client side certificates: https://github.com/elixir-plug/plug/pull/715/files
+
+
 rebar3
 ------
 
 curl https://s3.amazonaws.com/rebar3/rebar3 -o ~/bin/rebar3
 chmod u+x ~/bin/rebar3
 rebar3 new release my_release
+
+Application start (relx vs app.src):
+https://github.com/erlang/rebar3/issues/1887
 
 Skerleton
 ---------
@@ -27,3 +36,7 @@ git add . && git commit -a -m "Initial commit."
 
 make rel
 rel/my_app/bin/my_app console
+
+Perf
+----
+msacc:start(10000),msacc:print().
