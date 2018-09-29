@@ -1,0 +1,6 @@
+Collaboration
+-------------
+
+tmux -S /tmp/tmuxvim new-session bash (or vim)
+
+tmux -S /tmp/tmuxvim attach
