@@ -39,4 +39,5 @@ rel/my_app/bin/my_app console
 
 Perf
 ----
+from http://blog.erlang.org/IO-Polling/
 msacc:start(10000),msacc:print().
