@@ -114,7 +114,7 @@ set tags+=~/github/elixir/tags
 set tags+=~/github/tags
 
 " Change current path to the open buffer
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
 " Open pane in new tab
 :map <Leader>t :tab split<CR>
