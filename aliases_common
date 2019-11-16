@@ -1,0 +1,9 @@
+alias grep='grep --color'
+alias PORTS='lsof -iTCP -sTCP:LISTEN -n -P'
+#alias TAGS='~/.vim/plugged/vim-erlang-tags/bin/vim-erlang-tags.erl . --ignore "_build/**"'
+alias TAGS='~/.vim/plugged/vim-erlang-tags/bin/vim-erlang-tags.erl .'
+alias EXTAGS='ctags -R .'
+
+function D {
+  docker exec -it $1 /bin/bash
+}
