@@ -3,34 +3,16 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set ttymouse=sgr
-" For fzf
-set rtp+=/usr/local/opt/fzf
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-obsession'
-Plugin 'vim-erlang/vim-erlang-tags'
-Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'vim-erlang/vim-erlang-compiler'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
-Plugin 'vim-erlang/vim-erlang-skeletons'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'ElmCast/elm-vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'junegunn/fzf.vim'
-" Used by snipmate
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
-Plugin 'carlosgaldino/elixir-snippets'
-" end snipmate
-call vundle#end()
-
-filetype plugin indent on
+call plug#begin('~/.vim/plugged')
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-erlang/vim-erlang-tags'
+Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'vim-erlang/vim-erlang-compiler'
+Plug 'vim-erlang/vim-erlang-omnicomplete'
+Plug 'vim-erlang/vim-erlang-skeletons'
+Plug 'elixir-lang/vim-elixir'
+Plug 'ElmCast/elm-vim'
+call plug#end()
 
 " ==== Colours ====
 :set t_Co=256
@@ -56,7 +38,10 @@ set nofixendofline
 "Copy filename to clipboard
 nmap <F6> :let @*=expand("%:p")<CR>
 
-:syntax enable
+" syntax enable and filetype indent on is not needed as Plug handles it
+":syntax enable
+"filetype plugin indent on
+
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 au BufRead,BufNewFile *.es set filetype=erlang
 let NERDTreeIgnore=['__init__.py','.pyc$', '\~$', '\.o$']
@@ -102,47 +87,31 @@ nmap ; :Files<CR>
 
 :imap <Tab> <C-P>
 :imap <S-Tab> <Plug>snipMateNextOrTrigger
-"set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
-"set runtimepath+=~/github/vim-addon-manager
-"call vam#ActivateAddons(["vim-addon-mw-utils"])
 
+"\  'dir': '\v(_build|node_modules)$',
 let g:ctrlp_custom_ignore = {
-      \  'dir': '\v(_build|node_modules)$',
+      \  'dir': '\v(node_modules)$',
        \ 'file': '\v\.beam$'
        \ }
-let g:ctrlp_root_markers = ['.CTRLP_ROOT']
+"let g:ctrlp_root_markers = ['.CTRLP_ROOT']
+
 " surround: b surrounds text with {% %} for djangohtml
 autocmd FileType htmldjango let b:surround_{char2nr("b")} = "{% \r %}"
-"call pathogen#infect() TODO remove
 " vim-commentary
 autocmd FileType erlang setlocal commentstring=\%\ %s
 autocmd FileType elixir setlocal commentstring=\#\ %s
 
 " ==== CTAGS ====
+" for elixir tags run: ctags -R .
 au FileType elixir set tags+=~/src/elixir/rumbl/tags,~/github/phoenix/tags,~/github/elixir/tags
-"set tags+=~/github/aboroska/wombat/tags
 "Do not find rebar3 in ~/w
 set tags+=~/github/rebar3/tags
 set tags+=../tags
 set tags+=../../../tags
 set tags+=~/w/tags
-set tags+=~/otpinst/r21.1.3/tags
+set tags+=~/otpinst/tags
+set tags+=~/github/elixir/tags
 set tags+=~/github/tags
-
-"augroup session
-"    autocmd!
-"    autocmd VimEnter * call LoadSession()
-"    autocmd VimLeave * call SaveSession()
-"    function! SaveSession()
-"      execute 'mksession! $HOME/.vim/sessions/session.vim'
-"    endfunction
-"    function! LoadSession()
-"      if argc() == 0
-"        execute 'source $HOME/.vim/sessions/session.vim'
-"      endif
-"    endfunction
-"augroup END
 
 " Change current path to the open buffer
 autocmd BufEnter * silent! lcd %:p:h
@@ -220,31 +189,9 @@ set guioptions-=T
 "OS X needs this
 set backspace=2
 
-" Closing parens (from http://ix.io/1CUZ, https://twitter.com/obligd_app/status/1103537783006621696)
-fun! s:manual_close()
-    let cls = {}
-    let opn = {}
-
-    for [l:o, l:c] in map(split(&matchpairs, ','), 'split(v:val, ":")')
-        let cls[l:o] = l:c
-        let opn[l:c] = l:o
-    endfor
-    let stack = []
-
-    for c in split(getline('.'), '\zs')
-        if match(join(keys(l:cls)) , c) > -1
-            call insert(stack, c)
-        elseif match(join(keys(l:opn)), c) > -1
-            call remove(stack, index(stack, opn[c]))
-        endif
-    endfor
-
-    return len(stack) ? cls[stack[0]] : ''
-endfun
-
-inoremap <expr> <C-]> <SID>manual_close()
-
-
+" Copy github link to clipboard
+"command! GithubLinkToClipboard let @+="blaba". expand('%:p:h') | let @*=@+
+":echom substitute(expand('%:p:h'), "/Users/andrasboroska/ga/", "https://github.com/GameAnalytics/", "g") . "blob/master/" . expand('%:t') ."#L" . line('.')
 
 " ==== From Csaba ====
 
