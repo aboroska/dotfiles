@@ -35,8 +35,14 @@ call plug#end()
 "Do not change the end of file that shows up in git diff
 set nofixendofline
 
+" use comma as <Leader> key instead of backslash
+let mapleader=","
+
 "Copy filename to clipboard
 nmap <F6> :let @*=expand("%:p")<CR>
+
+"Change to local directory
+:map <Leader>l :lcd %:p:h<CR>
 
 " syntax enable and filetype indent on is not needed as Plug handles it
 ":syntax enable
@@ -69,8 +75,6 @@ let g:erlang_flymake_options = '--outdir /Users/aboroska/tmp --xref'
 
 " ==== Plugins ====
 "command-t http://mislav.uniqpath.com/2011/12/vim-revisited/
-" use comma as <Leader> key instead of backslash
-let mapleader=","
 " double percentage sign in command mode is expanded
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
