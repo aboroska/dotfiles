@@ -15,6 +15,14 @@ Core file
 ---------
 ulimit -c unlimited
 
+Disable wifi logs
+-----------------
+cd /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources
+# show
+sudo ./airport debug
+# disable
+sudo ./airport debug -AllUserland
+
 Disable swap
 ------------
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist

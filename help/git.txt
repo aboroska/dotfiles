@@ -2,3 +2,8 @@ Change remote url
 =================
 git remote set-url origin git@....:repo/project.git
 
+echo "\
+protocol=https
+host=github.com
+username=aboroska
+password=$GITHUB_TOKEN" | git credential-osxkeychain store

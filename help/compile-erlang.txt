@@ -1,6 +1,8 @@
 Build and install Erlang
 ========================
 
+EGREP=egrep CC=clang CPP="clang -E" kerl build git ~/github/otp/ OTP-24.0 r24.0
+
 Debug compile vm
 ----------------
 (cd $ERL_TOP/erts/emulator && make TYPE=debug smp)

@@ -11,7 +11,8 @@ Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'vim-erlang/vim-erlang-skeletons'
 Plug 'elixir-lang/vim-elixir'
-Plug 'ElmCast/elm-vim'
+Plug 'racer-rust/vim-racer'
+" Plug 'ElmCast/elm-vim'
 call plug#end()
 
 " ==== Colours ====
@@ -55,7 +56,7 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 :let html_start_line = line("'<")
 :let html_end_line = line("'>")
 "Ignore whitespace in vimdiff
-:set diffopt+=iwhite
+":set diffopt+=iwhite
 "To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 ":set showbreak=…
 :set showbreak=...
@@ -67,8 +68,8 @@ let g:netrw_list_hide= '.*\.swp$,\.git/$,.*\.pyc'
 "Add include dir for Erlang header files, used by gf
 :set path+=../include
 let g:erlang_quickfix_support = 1
-"let g:erlang_make_options = '--outdir /Users/aboroska/tmp --xref'
-let g:erlang_flymake_options = '--outdir /Users/aboroska/tmp --xref'
+"let g:erlang_make_options = '--outdir /Users/andras/tmp --xref'
+let g:erlang_flymake_options = '--outdir /Users/andras/tmp --xref'
 "Man pages
 :runtime! ftplugin/man.vim
 :set mouse=a
@@ -113,6 +114,7 @@ set tags+=~/github/rebar3/tags
 set tags+=../tags
 set tags+=../../../tags
 set tags+=~/w/tags
+set tags+=~/github/otp/tags
 set tags+=~/otpinst/tags
 set tags+=~/github/elixir/tags
 set tags+=~/github/tags
@@ -156,9 +158,9 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Easier to type
-noremap H ^
-noremap L $
-vnoremap L g_
+"noremap H ^
+"noremap L $
+"vnoremap L g_
 
 " "Uppercase word" mapping.
 "
@@ -195,7 +197,17 @@ set backspace=2
 
 " Copy github link to clipboard
 "command! GithubLinkToClipboard let @+="blaba". expand('%:p:h') | let @*=@+
-":echom substitute(expand('%:p:h'), "/Users/andrasboroska/ga/", "https://github.com/GameAnalytics/", "g") . "blob/master/" . expand('%:t') ."#L" . line('.')
+":echom substitute(expand('%:p:h'), "/Users/andras/ga/", "https://github.com/GameAnalytics/", "g") . "blob/master/" . expand('%:t') ."#L" . line('.')
+
+" Rust
+augroup Racer
+    autocmd!
+    autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+    autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
+    autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
+    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+    autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+augroup END
 
 " ==== From Csaba ====
 

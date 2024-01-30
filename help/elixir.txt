@@ -1,0 +1,6 @@
+Compile from source
+===================
+make
+mkdir inst
+make "PREFIX=inst" install
+PATH=`pwd`/inst:$PATH

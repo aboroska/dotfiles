@@ -1,11 +1,15 @@
 #export CFALGS="-g -O2 -no-pedantic"
-KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-wx"
+# For macOS Catalina
+#export CFLAGS="-O2 -g -fno-stack-check -Wno-error=implicit-function-declaration"
+KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/opt/openssl --disable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-wx"
+#KERL_CONFIGURE_OPTIONS="--disable-hipe --enable-smp-support --enable-threads --enable-kernel-poll  --enable-darwin-64bit --with-wx"
 KERL_DEFAULT_INSTALL_DIR=~/otpinst
 KERL_ENABLE_PROMPT=true
 #For git build
-#KERL_BUILD_DOCS=yes
+KERL_BUILD_DOCS=yes
+KERL_DOC_TARGETS=chunks
 
-KERL_INSTALL_MANPAGES=yes
-KERL_INSTALL_HTMLDOCS=yes
+#KERL_INSTALL_MANPAGES=yes
+#KERL_INSTALL_HTMLDOCS=yes
 #KERL_BUILD_BACKEND=git
 #OTP_GITHUB_URL="https://github.com/erlang/otp"
