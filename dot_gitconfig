@@ -1,15 +1,25 @@
+
+
 [user]
 	email = andras.boroska@gmail.com
-	name = Andras Boroska
+	name = aboroska
+
+[includeIf "gitdir:~/ga/"]
+  path = ~/ga/.gitconfig
+
+[includeIf "gitdir:~/ga/panoramix/"]
+  path = ~/ga/panoramix/.gitconfig
+
 [core]
         whitespace = tab-in-indent
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
+	excludesfile = /Users/andras/.gitignore
 [color]
         ui = true
 [status]
         showUntrackedFiles = no
 [alias]
-        s = status
+        s = status -u
         stu = status --untracked-files=normal
         graph = log --graph --all --oneline --decorate
         co = checkout
@@ -22,3 +32,8 @@
 
 [push]
 	default = simple
+
+[pull]
+        ff = only
+[url "https://github.com/"]
+	insteadOf = git://github.com/

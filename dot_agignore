@@ -1,0 +1,10 @@
+*.min.js
+*.js
+*.log
+tags
+gameidkeys_new*
+gameidkeys_new
+**/_build/
+_build/
+backup.sql
+cover
